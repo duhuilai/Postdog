@@ -1,0 +1,10 @@
+version: '1.0'
+name: postdog-build
+displayName: postdog-build
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+        - ''
+stages: []
