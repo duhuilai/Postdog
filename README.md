@@ -1,4 +1,72 @@
-﻿## ⚠️ 项目状态说明 
+﻿# 🐕 Postdog - 开源API工具
+
+<div align="center">
+
+![Postdog Logo](src/browser/src/assets/images/logo.svg)
+
+**Postdog** 是一个强大的开源、跨平台 API 开发测试工具,支持 API 文档导出功能。
+
+[![License](https://img.shields.io/github/license/Postdoglab/postdog)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/Postdoglab/postdog/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](https://github.com/Postdoglab/postdog/releases)
+
+</div>
+
+---
+
+## ✨ 特性
+
+- 🚀 **跨平台支持**: Windows、macOS、Linux
+- 📝 **API 测试**: 支持 REST、Websocket 等协议
+- 📄 **文档导出**: 一键导出 API 文档为 Word 或 PDF 格式
+- 🔌 **插件系统**: 强大的扩展能力
+- 💾 **本地存储**: 数据完全本地化,安全可控
+- 🎨 **现代 UI**: 基于 Angular + Electron 构建
+
+## 📦 快速开始
+
+### 从源码构建
+
+```bash
+# 克隆仓库
+git clone https://gitee.com/your-username/postdog.git
+cd postdog
+
+# 安装依赖
+yarn install
+
+# 开发模式运行
+yarn start
+
+# 构建生产版本
+yarn build
+
+# 打包应用
+yarn electron:pack
+```
+
+### 生成安装包
+
+构建完成后,安装包位于 `dist/` 目录:
+- Windows: `Postdog-Setup-0.1.0.exe`
+- macOS: `Postdog-0.1.0.dmg`
+- Linux: `Postdog-0.1.0.AppImage`
+
+## 📖 使用文档
+
+详细的使用文档请访问: [Postdog 文档](https://docs.postdog.com/)
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request!
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+
+---
+
+## ⚠️ 原项目状态说明 
 
 本项目目前已进入 **暂停维护**。
 
