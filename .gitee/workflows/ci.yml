@@ -1,0 +1,68 @@
+# Gitee Go 主流水线配置
+name: Postdog CI/CD
+displayName: 'Postdog 自动构建'
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install -g yarn
+      - run: yarn install
+      - run: yarn build
+      - run: yarn electron:pack --win
+      - uses: actions/upload-artifact@v3
+        with:
+          name: windows
+          path: dist/*.exe
+
+  build-macos:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install -g yarn
+      - run: yarn install
+      - run: yarn build
+      - run: yarn electron:pack --mac
+      - uses: actions/upload-artifact@v3
+        with:
+          name: macos
+          path: dist/*.dmg
+
+  build-linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install -g yarn
+      - run: sudo apt-get update && sudo apt-get install -y rpm build-essential
+      - run: yarn install
+      - run: yarn build
+      - run: yarn electron:pack --linux
+      - uses: actions/upload-artifact@v3
+        with:
+          name: linux
+          path: |
+            dist/*.AppImage
+            dist/*.deb

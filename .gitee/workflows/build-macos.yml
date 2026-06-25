@@ -1,0 +1,60 @@
+# Gitee Go 流水线配置 - macOS构建
+name: Build macOS
+displayName: '构建macOS安装包'
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-macos:
+    name: macOS Build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build Browser
+        run: yarn build:browser
+
+      - name: Build Electron
+        run: yarn build:electron
+
+      - name: Package macOS Installer
+        run: yarn electron:pack --mac
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-installer
+          path: |
+            dist/*.dmg
+            dist/*.zip
+          retention-days: 30
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/*.dmg
+            dist/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

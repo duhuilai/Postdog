@@ -1,0 +1,128 @@
+# Postdog CI/CD 流水线配置
+# 用于在Gitee Go上自动构建和打包
+
+name: Postdog Build Pipeline
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  # Windows构建
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      - name: 设置Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: 安装Yarn
+        run: npm install -g yarn
+
+      - name: 安装依赖
+        run: yarn install --frozen-lockfile
+
+      - name: 构建项目
+        run: |
+          yarn build:browser
+          yarn build:electron
+
+      - name: 打包Windows安装包
+        run: yarn electron:pack --win
+
+      - name: 上传Windows安装包
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-installer
+          path: dist/*.exe
+
+  # macOS构建
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      - name: 设置Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: 安装Yarn
+        run: npm install -g yarn
+
+      - name: 安装依赖
+        run: yarn install --frozen-lockfile
+
+      - name: 构建项目
+        run: |
+          yarn build:browser
+          yarn build:electron
+
+      - name: 打包macOS安装包
+        run: yarn electron:pack --mac
+
+      - name: 上传macOS安装包
+        uses: actions/upload-artifact@v2
+        with:
+          name: macos-installer
+          path: dist/*.dmg
+
+  # Linux构建
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      - name: 设置Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: 安装Yarn
+        run: npm install -g yarn
+
+      - name: 安装依赖
+        run: yarn install --frozen-lockfile
+
+      - name: 构建项目
+        run: |
+          yarn build:browser
+          yarn build:electron
+
+      - name: 打包Linux安装包
+        run: yarn electron:pack --linux
+
+      - name: 上传Linux安装包
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux-installer
+          path: dist/*.AppImage
+
+  # 发布到Gitee Release
+  release:
+    needs: [build-windows, build-macos, build-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      - name: 下载所有安装包
+        uses: actions/download-artifact@v2
+
+      - name: 创建Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            windows-installer/*.exe
+            macos-installer/*.dmg
+            linux-installer/*.AppImage
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITEE_TOKEN }}
