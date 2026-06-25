@@ -77,7 +77,10 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install -g yarn
-          yarn install --frozen-lockfile
+          yarn install --frozen-lockfile --ignore-scripts
+          npx electron-builder install-app-deps
+          node ./scripts/afterInstall.js
+          npx patch-package
 
       - name: Build Project
         run: yarn build
@@ -125,7 +128,10 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install -g yarn
-          yarn install --frozen-lockfile
+          yarn install --frozen-lockfile --ignore-scripts
+          npx electron-builder install-app-deps
+          node ./scripts/afterInstall.js
+          npx patch-package
 
       - name: Build Project
         run: yarn build
