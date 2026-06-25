@@ -10,110 +10,40 @@ triggers:
       - main
     tags:
       - v*
-  pull_request:
-    branches:
-      - main
 
 stages:
   - name: build-windows
     displayName: 'Windows构建'
     steps:
-      - step: checkout
+      - step: checkout@1
         name: '检出代码'
         
-      - step: nodejs-install
+      - step: nodejs-install@1
         name: '安装Node.js'
         version: '18'
         
-      - step: shell
-        name: '安装依赖'
+      - step: shell@1
+        name: '安装Yarn'
         script:
           - npm install -g yarn
+          
+      - step: shell@1
+        name: '安装依赖'
+        script:
           - yarn install
           
-      - step: shell
+      - step: shell@1
         name: '构建项目'
         script:
           - yarn build
           
-      - step: shell
+      - step: shell@1
         name: '打包Windows'
         script:
           - yarn electron:pack --win
           
-      - step: artifact-upload
+      - step: artifact-upload@1
         name: '上传制品'
         artifacts:
-          - dist/*.exe
-          - dist/*.zip
-
-  - name: build-macos
-    displayName: 'macOS构建'
-    steps:
-      - step: checkout
-        name: '检出代码'
-        
-      - step: nodejs-install
-        name: '安装Node.js'
-        version: '18'
-        
-      - step: shell
-        name: '安装依赖'
-        script:
-          - npm install -g yarn
-          - yarn install
-          
-      - step: shell
-        name: '构建项目'
-        script:
-          - yarn build
-          
-      - step: shell
-        name: '打包macOS'
-        script:
-          - yarn electron:pack --mac
-          
-      - step: artifact-upload
-        name: '上传制品'
-        artifacts:
-          - dist/*.dmg
-          - dist/*.zip
-
-  - name: build-linux
-    displayName: 'Linux构建'
-    steps:
-      - step: checkout
-        name: '检出代码'
-        
-      - step: nodejs-install
-        name: '安装Node.js'
-        version: '18'
-        
-      - step: shell
-        name: '安装系统依赖'
-        script:
-          - apt-get update
-          - apt-get install -y rpm build-essential
-          
-      - step: shell
-        name: '安装依赖'
-        script:
-          - npm install -g yarn
-          - yarn install
-          
-      - step: shell
-        name: '构建项目'
-        script:
-          - yarn build
-          
-      - step: shell
-        name: '打包Linux'
-        script:
-          - yarn electron:pack --linux
-          
-      - step: artifact-upload
-        name: '上传制品'
-        artifacts:
-          - dist/*.AppImage
-          - dist/*.deb
-          - dist/*.rpm
+          - path: dist/*.exe
+          - path: dist/*.zip
