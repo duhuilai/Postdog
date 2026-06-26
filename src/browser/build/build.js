@@ -54,14 +54,7 @@ class appPlatformBuilder {
     return json;
   }
   executeBuild() {
-    try {
-      execSync('ng build -c production', { stdio: 'inherit' });
-    } catch (error) {
-      console.error('Build failed with error:', error.message);
-      if (error.stdout) console.error('stdout:', error.stdout.toString());
-      if (error.stderr) console.error('stderr:', error.stderr.toString());
-      throw error;
-    }
+    execSync('ng build -c production', { stdio: 'inherit' });
   }
 }
 class PlatformBuilder {
@@ -81,13 +74,8 @@ class PlatformBuilder {
     //Because of i18n,we should change angular.json for generate different base-href html tag
     let buildConfigJson = require('../angular.json');
     buildConfigJson = this.instance.resetBuildConfig(buildConfigJson);
-    let that = this;
-    fs.writeFile('./angular.json', JSON.stringify(buildConfigJson), function (err) {
-      if (err) {
-        console.error('build/beforeBuild.js:', err);
-      }
-      that.instance.executeBuild();
-    });
+    fs.writeFileSync('./angular.json', JSON.stringify(buildConfigJson));
+    this.instance.executeBuild();
   }
 }
 let platform = process.argv[2] || 'app';
