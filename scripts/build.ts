@@ -157,11 +157,33 @@ const signWindows = () => {
 
 console.log('打包参数', argv);
 
+// 从 argv 中提取平台标志，避免展开到 build() 选项中覆盖 config
+const platformFlags = {
+  win: argv.win,
+  mac: argv.mac,
+  linux: argv.linux
+};
+Reflect.deleteProperty(argv, 'win');
+Reflect.deleteProperty(argv, 'mac');
+Reflect.deleteProperty(argv, 'linux');
+
+// 根据命令行参数确定构建目标平台（支持跨平台构建）
+let targets: any;
+if (platformFlags.win) {
+  targets = Platform.WINDOWS.createTarget();
+} else if (platformFlags.mac) {
+  targets = Platform.MAC.createTarget();
+} else if (platformFlags.linux) {
+  targets = Platform.LINUX.createTarget();
+} else {
+  // 默认构建当前主机平台
+  targets = targetPlatform.createTarget();
+}
+
 Promise.all([
   build({
     config,
-    targets: targetPlatform.createTarget(),
-    ...argv
+    targets
   })
 ])
   .then(async () => {
