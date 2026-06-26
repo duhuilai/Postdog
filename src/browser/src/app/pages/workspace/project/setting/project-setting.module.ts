@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
@@ -20,6 +21,7 @@ import { ApiDocExportComponent } from '../api/components/api-doc-export/api-doc-
     ExtensionSelectModule,
     NzUploadModule,
     NzCardModule,
+    NzButtonModule,
     SharedModule,
     NzToolTipModule
   ],

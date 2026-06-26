@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ApiData, Collection, CollectionTypeEnum } from '../../services/storage/db/models/apiData';
+import { ApiData } from '../../services/storage/db/models/apiData';
+import { CollectionTypeEnum, Group } from '../../services/storage/db/models/index';
+
+type Collection = (ApiData | (Group & { children?: Collection[] })) & {
+  collectionType?: CollectionTypeEnum;
+};
 
 /**
  * API文档导出服务
