@@ -36,11 +36,8 @@ jobs:
           node ./scripts/afterInstall.js
           npx patch-package
 
-      - name: Build Project
-        run: yarn build
-
-      - name: Package Windows Installer
-        run: yarn electron:pack --win
+      - name: Build and Package Windows Installer
+        run: yarn release:ci --win
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
@@ -82,11 +79,8 @@ jobs:
           node ./scripts/afterInstall.js
           npx patch-package
 
-      - name: Build Project
-        run: yarn build
-
-      - name: Package macOS Installer
-        run: yarn electron:pack --mac
+      - name: Build and Package macOS Installer
+        run: yarn release:ci --mac
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
@@ -133,11 +127,8 @@ jobs:
           node ./scripts/afterInstall.js
           npx patch-package
 
-      - name: Build Project
-        run: yarn build
-
-      - name: Package Linux Installer
-        run: yarn electron:pack --linux
+      - name: Build and Package Linux Installer
+        run: yarn release:ci --linux
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4

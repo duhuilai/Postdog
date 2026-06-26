@@ -25,6 +25,7 @@
     "electron:build:browser": "yarn workspace postdog-web run build",
     "electron:static": "npm run electron:tsc && electron .",
     "release": "npm-run-all -s electron:build:browser electron:tsc && npx esno scripts/build.ts --publish=always",
+    "release:ci": "npm-run-all -s electron:build:browser electron:tsc && npx esno scripts/build.ts",
     "upload": "node scripts/upload.js",
     "test": "npm-run-all --serial test:*",
     "e2e": "cd test/e2e&&npx playwright test -c playwright.config.ts",
