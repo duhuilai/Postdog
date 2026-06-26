@@ -44,8 +44,8 @@ jobs:
         with:
           name: Postdog-Windows
           path: |
-            dist/*.exe
-            dist/*.zip
+            release/*.exe
+            release/*.zip
           retention-days: 30
 
       - name: Create Release
@@ -53,8 +53,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/*.exe
-            dist/*.zip
+            release/*.exe
+            release/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -87,8 +87,8 @@ jobs:
         with:
           name: Postdog-macOS
           path: |
-            dist/*.dmg
-            dist/*.zip
+            release/*.dmg
+            release/*.zip
           retention-days: 30
 
       - name: Create Release
@@ -96,8 +96,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/*.dmg
-            dist/*.zip
+            release/*.dmg
+            release/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -135,9 +135,9 @@ jobs:
         with:
           name: Postdog-Linux
           path: |
-            dist/*.AppImage
-            dist/*.deb
-            dist/*.rpm
+            release/*.AppImage
+            release/*.deb
+            release/*.rpm
           retention-days: 30
 
       - name: Create Release
@@ -145,8 +145,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/*.AppImage
-            dist/*.deb
-            dist/*.rpm
+            release/*.AppImage
+            release/*.deb
+            release/*.rpm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
