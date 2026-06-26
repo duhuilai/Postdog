@@ -39,13 +39,26 @@ jobs:
       - name: Build and Package Windows Installer
         run: yarn release:ci --win
 
+      - name: List build output
+        if: always()
+        run: |
+          echo "=== release/ directory ==="
+          dir /s /b release\ 2>nul || echo "release/ directory not found"
+          echo "=== dist/ directory ==="
+          dir /s /b dist\ 2>nul || echo "dist/ directory not found"
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: Postdog-Windows
           path: |
-            release/*.exe
-            release/*.zip
+            release/**/*.exe
+            release/**/*.zip
+            release/**/*.AppImage
+            release/**/*.deb
+            release/**/*.rpm
+            release/**/*.dmg
           retention-days: 30
 
       - name: Create Release
@@ -82,13 +95,22 @@ jobs:
       - name: Build and Package macOS Installer
         run: yarn release:ci --mac
 
+      - name: List build output
+        if: always()
+        run: |
+          echo "=== release/ directory ==="
+          find release/ -type f 2>/dev/null || echo "release/ directory not found"
+          echo "=== dist/ directory ==="
+          find dist/ -type f 2>/dev/null || echo "dist/ directory not found"
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: Postdog-macOS
           path: |
-            release/*.dmg
-            release/*.zip
+            release/**/*.dmg
+            release/**/*.zip
           retention-days: 30
 
       - name: Create Release
@@ -130,14 +152,23 @@ jobs:
       - name: Build and Package Linux Installer
         run: yarn release:ci --linux
 
+      - name: List build output
+        if: always()
+        run: |
+          echo "=== release/ directory ==="
+          find release/ -type f 2>/dev/null || echo "release/ directory not found"
+          echo "=== dist/ directory ==="
+          find dist/ -type f 2>/dev/null || echo "dist/ directory not found"
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: Postdog-Linux
           path: |
-            release/*.AppImage
-            release/*.deb
-            release/*.rpm
+            release/**/*.AppImage
+            release/**/*.deb
+            release/**/*.rpm
           retention-days: 30
 
       - name: Create Release
