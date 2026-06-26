@@ -54,7 +54,14 @@ class appPlatformBuilder {
     return json;
   }
   executeBuild() {
-    execSync('ng build -c production --localize=en,zh', { stdio: 'inherit' });
+    try {
+      execSync('ng build -c production --localize=en,zh', { stdio: 'inherit' });
+    } catch (error) {
+      console.error('Build failed with error:', error.message);
+      if (error.stdout) console.error('stdout:', error.stdout.toString());
+      if (error.stderr) console.error('stderr:', error.stderr.toString());
+      throw error;
+    }
   }
 }
 class PlatformBuilder {
