@@ -54,7 +54,7 @@ class appPlatformBuilder {
     return json;
   }
   executeBuild() {
-    execSync('ng build -c production --base-href ""', { stdio: 'inherit' });
+    execSync('ng build -c production --base-href=', { stdio: 'inherit' });
   }
 }
 class PlatformBuilder {

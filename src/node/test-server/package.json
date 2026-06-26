@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "postdog-test-server",
   "version": "1.0.0",
   "description": "Recieve POSTDOG test config and response http result",

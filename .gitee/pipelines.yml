@@ -2,7 +2,7 @@
 version: '1.0'
 
 name: postdog-build
-displayName: 'Postdog 自动构建'
+displayName: 'postdog-build'
 
 triggers:
   push:

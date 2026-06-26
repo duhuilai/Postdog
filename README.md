@@ -52,9 +52,7 @@ yarn electron:pack
 - macOS: `Postdog-0.1.0.dmg`
 - Linux: `Postdog-0.1.0.AppImage`
 
-## 📖 使用文档
 
-详细的使用文档请访问: [Postdog 文档](https://docs.postdog.com/)
 
 ## 🤝 贡献
 
@@ -66,21 +64,11 @@ yarn electron:pack
 
 ---
 
-## ⚠️ 原项目状态说明 
-
-本项目目前已进入 **暂停维护**。
-
-由于不可抗力因素，POSTDOG 开源项目自即日起将不再进行功能迭代与日常维护，未来也将不再提供新的功能更新与安全修复。
-
-如果你仍在生产环境中使用本项目，请务必自行评估风险，并考虑迁移到 Apikit.com 或其他替代方案。
-
-感谢所有贡献者与用户多年来的支持与陪伴。
 
 
 
 # POSTDOG API 客户端（Client）
 
-![POSTDOG API Client](http://data.eolinker.com/course/QbLMSaJ7f3dcd0b075a7031b31f8acb486e0a090f1bdc8d.jpeg)
 
 <p align="center"><a href="wiki/README.en.md">English</a> | <span>简体中文</span></p>
 <p align="center">
@@ -94,92 +82,7 @@ yarn electron:pack
 
 **POSTDOG** 是一个强大的开源、免费的、跨平台（Windows、Mac、Linux、Browsers...）的 **API 开发测试工具**，支持 REST、Websocket 等协议（即将支持 GraphQL、gRPC、TCP、UDP），帮助你加速完成 API 开发和测试工作。它非常适合中小团队及个人使用。
 
-![POSTDOG UI](https://data.eolink.com/ImGzhCi79d0beb5b8221670dffceb61bf642af1960d3881)
 
-我们在保证 **POSTDOG** 轻巧灵活的同时，还为它设计了一个强大的插件系统，让您可以一键使用插件来增强它的功能。
-
-![POSTDOG Extensions](https://data.eolink.com/22UMwcV01e087e3549edb91361f15a9ba8047e16d0d3f3f)
-
-因此 **POSTDOG** 理论上是一个拥有无限可能的 API 产品，可以从Logo 中看到，我们也形象地为它加上了一件披风，代表它的无限可能。
-
-
-## 免登录在线使用或下载
-
-**POSTDOG** 现在已经支持 Windows、Mac、Linux等系统，你可以通过以下地址访问并下载。同时我们也提供了 Web 端，方便你在任何浏览器上使用。
-
-**[https://POSTDOG.com/](https://POSTDOG.com//)**
-
-如果您试用之后觉得不错，**请给我们的POSTDOG一个 Star 和 Fork~**你的支持是我们不断改进产品的动力！
-
-## 详细的文档
-
-[POSTDOG 文档](https://docs.POSTDOG.com/)
-
-[插件开发文档](https://developer.POSTDOG.com/api/get-started.html)
-
-
-## 功能特性和迭代计划（Roadmap）
-
-- 🚀 多协议支持
-
--- 已实现：HTTP REST、Websocket
-
--- 即将实现：GraphQL、TCP、UDP、gRPC
-
-- 📕 API 文档
-
-- ✨ API 设计
-
-- ⚡ API 测试
-
-- 🎭 Mock
-
-- 🙌 团队协作
-
-- 🎈 文档分享
-
-- 🗺 环境
-
-- 🧶 全局变量
-
-- 🧩 自定义主题风格
-
-- 🌐 多语言支持：中文、English
-
-了解更多具体迭代计划：[Github Project](https://github.com/orgs/Postdoglab/projects/3)
-</br>也欢迎给我们多多提需求~
-</br>
-
-## 友情链接
-
-- [APIPark](https://apipark.com?utm_source=POSTDOG) - 专业的API服务平台
-
-## 💪 贡献者 💪
-<p align="center">
-感谢你们让美好发生！
-</p>
-
-<a href="https://github.com/Postdoglab/postdog/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Postdoglab/postdog" />
-</a>
-
-<div align="center">
-<sub>Power by <a href="https://contrib.rocks">contrib.rocks</a>.</sub>
-</div>
-
-## Bug 和需求反馈
-
-如果想要反馈 Bug、提供产品意见，可以创建一个 [Github issue](https://github.com/Postdoglab/postdog/issues) 联系我们，十分感谢！
-
-如果您希望和 POSTDOG 团队近距离交流，讨论产品使用技巧以及了解更多产品最新进展，欢迎加入以下渠道。
-
-- QQ群号码：981965807
-
-- QQ群链接：[加入POSTDOG 用户群](https://jq.qq.com/?_wv=1027&k=Kej1qTUy)
-
-- 微信群：
-
-![](http://data.eolinker.com/course/NKhRRF668370911c8b8ea8a0887b5d62e71b0f1a22ad76a.png)
 
 
 ## 开发 POSTDOG
