@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": { "analytics": false, "defaultCollection": "@angular-eslint/schematics", "cache": { "enabled": true } },
   "version": 1,

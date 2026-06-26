@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "POSTDOG",
   "version": "0.5.2",
   "main": "out/app/electron-main/main.js",
