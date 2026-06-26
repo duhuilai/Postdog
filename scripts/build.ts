@@ -71,6 +71,11 @@ const config: Configuration = {
   }
 };
 
+// CI 环境中不需要自动发布，移除 publish 配置避免 GH_TOKEN 报错
+if (process.env.GITHUB_ACTIONS || process.env.CI) {
+  delete config.publish;
+}
+
 // 这里动态往 package.json 中写入 electron-builder 配置，主要是为了给 build-for-electron.bat 脚本读取配置
 const modifyPkgInfo = () => {
   // @ts-ignore
