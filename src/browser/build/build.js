@@ -54,7 +54,7 @@ class appPlatformBuilder {
     return json;
   }
   executeBuild() {
-    execSync('ng build -c production', { stdio: 'inherit' });
+    execSync('ng build -c production --localize', { stdio: 'inherit' });
   }
 }
 class PlatformBuilder {
