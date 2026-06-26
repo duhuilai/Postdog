@@ -307,13 +307,13 @@ export class ApiDocExportService {
 
     const traverse = (items: Collection[]) => {
       items.forEach(item => {
-        if (item.collectionType === CollectionTypeEnum.GROUP) {
+        if (item.collectionType === CollectionTypeEnum.Group) {
           const group = item as any;
           const groupApis: ApiData[] = [];
           
           if (group.children) {
             group.children.forEach(child => {
-              if (child.collectionType === CollectionTypeEnum.API_DATA) {
+              if (child.collectionType === CollectionTypeEnum.API) {
                 groupApis.push(child as ApiData);
               } else {
                 traverse([child]);
@@ -324,7 +324,7 @@ export class ApiDocExportService {
           if (groupApis.length > 0) {
             groups.push({ name: group.name || '未命名分组', apis: groupApis });
           }
-        } else if (item.collectionType === CollectionTypeEnum.API_DATA) {
+        } else if (item.collectionType === CollectionTypeEnum.API) {
           apis.push(item as ApiData);
         }
       });
