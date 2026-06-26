@@ -55,7 +55,7 @@ class appPlatformBuilder {
   }
   executeBuild() {
     try {
-      execSync('ng build -c production --localize=en,zh', { stdio: 'inherit' });
+      execSync('ng build -c production', { stdio: 'inherit' });
     } catch (error) {
       console.error('Build failed with error:', error.message);
       if (error.stdout) console.error('stdout:', error.stdout.toString());
